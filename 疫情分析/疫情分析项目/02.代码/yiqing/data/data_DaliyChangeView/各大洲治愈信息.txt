@@ -1,0 +1,113 @@
+{
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "color": [
+        "#c23531",
+        "#2f4554",
+        "#61a0a8",
+        "#d48265",
+        "#749f83",
+        "#ca8622",
+        "#bda29a",
+        "#6e7074",
+        "#546570",
+        "#c4ccd3",
+        "#f05b72",
+        "#ef5b9c",
+        "#f47920",
+        "#905a3d",
+        "#fab27b",
+        "#2a5caa",
+        "#444693",
+        "#726930",
+        "#b2d235",
+        "#6d8346",
+        "#ac6767",
+        "#1d953f",
+        "#6950a1",
+        "#918597"
+    ],
+    "series": [
+        {
+            "type": "pie",
+            "name": "\u6cbb\u6108",
+            "clockwise": true,
+            "data": [
+                {
+                    "name": "\u4e9a\u6d32",
+                    "value": 23272
+                },
+                {
+                    "name": "\u5176\u4ed6",
+                    "value": 603
+                },
+                {
+                    "name": "\u5317\u7f8e\u6d32",
+                    "value": 550749
+                },
+                {
+                    "name": "\u5357\u7f8e\u6d32",
+                    "value": 315
+                },
+                {
+                    "name": "\u5927\u6d0b\u6d32",
+                    "value": 300
+                },
+                {
+                    "name": "\u6b27\u6d32",
+                    "value": 241590
+                },
+                {
+                    "name": "\u975e\u6d32",
+                    "value": 292
+                }
+            ],
+            "radius": [
+                "0%",
+                "75%"
+            ],
+            "center": [
+                "50%",
+                "50%"
+            ],
+            "roseType": "radius",
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "\u4e9a\u6d32",
+                "\u5176\u4ed6",
+                "\u5317\u7f8e\u6d32",
+                "\u5357\u7f8e\u6d32",
+                "\u5927\u6d0b\u6d32",
+                "\u6b27\u6d32",
+                "\u975e\u6d32"
+            ],
+            "selected": {}
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0
+    }
+}

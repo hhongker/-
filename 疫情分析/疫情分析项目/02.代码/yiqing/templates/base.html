@@ -1,0 +1,173 @@
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>疫情分析</title>
+    <meta name="description" content="疫情数据可视化">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <link rel="stylesheet" href="../static/css/layui.css">
+    <link rel="Shortcut Icon" href="../static/img/Virtual_antivirus_system.png" type="image/x-icon"/>
+    <link rel="stylesheet" href="../static/css/base.css">
+
+    {#<script src="../static/js/layui.all.js" charset="utf-8"></script>#}
+    {#    <link rel="stylesheet" href="../static/css/layui.mobile.css">#}
+
+
+
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="tips tip1"><span>{{ data.confirm }}</span><br>确诊</div>
+        <div class="tips tip2"><span>{{ data.suspect }}</span><br>疑似</div>
+        <div class="tips tip3"><span>{{ data.dead }}</span><br>死亡</div>
+        <div class="tips tip4"><span>{{ data.dead }}</span><br>治愈</div>
+        <div class="layui-logo" style="font-size: 28px;font-family: 隶书">疫情实时追踪</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="index">疫情表格详情</a></li>
+            <li class="layui-nav-item"><a href="chinaMap">中国疫情地图</a></li>
+            <li class="layui-nav-item"><a href="chinaCitysAnalyse">中国地区疫情变化分析</a></li>
+            <li class="layui-nav-item"><a href="worldChange">世界疫情趋势</a></li>
+            <li class="layui-nav-item"><a href="OtherMessage">其他信息</a></li>
+        </ul>
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item"><a href="https://news.qq.com/zt2020/page/feiyan.htm#/prevent">数据来源:腾讯新闻</a></li>
+            <li class="layui-nav-item" id="time">时间</li>
+            <li class="layui-nav-item china">
+
+                <a href="#">
+                    <img src="../static/img/中国.png"
+                         class="layui-nav-img">
+                    中国
+                </a>
+                </dl>
+            </li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            {% block leftNav %}{% endblock %}
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            {#            <ul class="layui-nav layui-nav-tree" lay-filter="test">#}
+            {#                <li class="layui-nav-item layui-nav-itemed" id="Chinaeveryday">#}
+            {#                    <a href="#" ><span class="layui-nav-more"></span></a>#}
+            {#                    <dl class="layui-nav-child">#}
+            {#                        <dd><a href="#analyse1">历史每日新增信息</a></dd>#}
+            {#                        #}
+            {#                    </dl>#}
+            {#                </li>#}
+            {#                <li class="layui-nav-item" id="chinaepidemicmap">#}
+            {##}
+            {#                    <a href="#" >中国疫情地图<span class="layui-nav-more"></span></a>#}
+            {#                    <dl class="layui-nav-child">#}
+            {#                        <dd><a href="#analyse5">中国各省今日新增情况折线图</a></dd>#}
+            {#                        #}
+            {#                    </dl>#}
+            {#                </li>#}
+            {#                <span class="layui-nav-bar" style="top: 22.5px; height: 0px; opacity: 0;"></span>#}
+            {#            </ul>#}
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 10px;" id="Main_">
+            {#            数据可视化展示#}
+            {#            <br>#}
+            {#            <br>#}
+            {% block MainMess %}{% endblock %}
+        </div>
+    </div>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+    <div id="title"></div>
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © 嘉应学院~泰迪智能双创工作室 小爬虫&数据可视化
+    </div>
+</div>
+
+
+
+
+<script src="../static/js/comment.js"></script>
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="../static/js/echarts.min.js"></script>
+<script src="../static/js/china.js"></script>
+<script src="../static/js/world.js"></script>
+<script src="../static/js/jquery.easyui.min.js"></script>
+<script src="../static/js/datagrid-export.js"></script>
+
+{#在这写入替换#}
+{% block AjaxMainMess %}{% endblock %}
+
+
+<script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+        var element = layui.element;
+    });
+
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?d214947968792b839fd669a4decaaffc";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+
+    {# $('.layui-nav-item.china').hover(function () {
+        throw "别点这，没意义"
+    }).on('click',function () {
+        $(this).removeClass('layui-this')
+    }) #}
+
+    function getD() {
+        var mydate = new Date();
+        fy = mydate.getFullYear();
+        M = mydate.getMonth() + 1;
+        d = mydate.getDate();
+
+        var h = mydate.getHours();
+        var m = mydate.getMinutes();
+        var s = mydate.getSeconds();
+        return fy + "-" + M + "-" + d + " " + h + ":" + m + ":" + s
+    }
+    {#console.log(getD())#}
+    {#处理时间#}
+    tme = $('#time')
+    setInterval(function () {
+        d = getD()
+        {#console.log(d)#}
+        tme.html(d)
+    }, 1000)
+
+
+    {#展示中国疫情信息#}
+    tips = $('.tips')
+    $('.layui-nav-item.china')
+        .mouseenter(function () {
+            tips.show()
+        }).mouseleave(function () {
+        tips.hide()
+    }).on('click', function () {
+        $(this).removeClass('layui-this')
+    })
+    
+
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+import pandas as pd
+import pyecharts.options as opts
+from pyecharts.charts import Line,Bar,Map
+from pyecharts.charts import Page#将所有图像放在同一页所需要的库
+from util import dealWithFile as dwf
+
+
+readPath = dwf.rootPath #读取数据的地方
+savaPath = dwf.savaPath3 #生成结果的地方
+flag = dwf.flag #是否生成的数据
+
+page=Page()#创建一个分页用于放所有的图像在这一分页上
+
+
+data_pro_tota = pd.DataFrame(pd.read_excel(readPath+'\中国各省市(区)总体疫情信息\中国各省市(区)总体疫情信息.xlsx'))
+
+#剔除明显高于其他省份的湖北省的值，以第二大的值为max_confirm
+data_confirm = []
+for i in data_pro_tota.confirm:
+    data_confirm.append(i)
+data_confirm.sort()
+max_confirm = data_confirm[-2]
+
+#绘制中国累计确诊人数地图
+def china_map_confirm():
+    map_confirm = (
+        Map()
+        .add("中国疫情地图（累计确诊人数）", [list(z) for z in zip(data_pro_tota.name, data_pro_tota.confirm)], "china")
+        .set_global_opts(title_opts=opts.TitleOpts(title="中国疫情地图（累计确诊人数）"))
+        .set_global_opts(
+            visualmap_opts = opts.VisualMapOpts(is_piecewise = True, pieces=[
+                {"min": max_confirm,"color": "#780707"}, # 数据范围分段，分颜色，可以根据数据大小具体分配大小
+                {"min": max_confirm/8*7, "max": max_confirm, "color": "#B40404"},
+                {"min": max_confirm/8*4, "max": max_confirm/8*7, "color": "#CD1111"},
+                {"min": max_confirm/8, "max": max_confirm/8*4,"color": "#F68181"},
+                {"min":1,"max": max_confirm/8, "color": "#F5A9A9"},
+                {"max": 0, "min": 0, "label": "0", "color": "#FFFFFF"},
+            ]))
+    )
+    page.add(map_confirm)  # 将图像加入同一页
+    if flag: dwf.write_to_file(savaPath + '\\绘制中国累计确诊人数地图.txt', str(map_confirm.dump_options_with_quotes()))
+    return map_confirm
+
+#绘制中国现存确诊人数地图
+def china_map_nowConfirm():
+    map_nowConfirm = (
+        (
+            Map()
+                .add("中国疫情地图（现存确诊人数）", [list(z) for z in zip(data_pro_tota.name, data_pro_tota.nowConfirm)], "china")
+                .set_global_opts(title_opts=opts.TitleOpts(title="中国疫情地图（现存确诊人数）"),
+                visualmap_opts=opts.VisualMapOpts(is_piecewise=True, pieces=[
+                    {"min": max_confirm, "color": "#780707"},  # 数据范围分段，分颜色，可以根据数据大小具体分配大小
+                    {"min": max_confirm / 8 * 7, "max": max_confirm, "color": "#B40404"},
+                    {"min": max_confirm / 8 * 4, "max": max_confirm / 8 * 7, "color": "#CD1111"},
+                    {"min": max_confirm / 8, "max": max_confirm / 8 * 4, "color": "#F68181"},
+                    {"min": 1, "max": max_confirm / 8, "color": "#F5A9A9"},
+                    {"max": 0, "min": 0, "label": "0", "color": "#FFFFFF"},
+                ]))
+        )
+    )
+    page.add(map_nowConfirm)  # 将图像加入同一页
+    if flag: dwf.write_to_file(savaPath + '\\绘制中国现存确诊人数地图.txt', str(map_nowConfirm.dump_options_with_quotes()))
+    return map_nowConfirm
+
+
+
+#绘制中国各省今日新增情况柱状图
+def bar_now():
+    data_Nowtota = pd.DataFrame(pd.read_excel(readPath+'\中国各省市(区)总体疫情信息\中国各省市(区)今日新增疫情信息.xlsx'))
+    data_Nowtota=data_Nowtota.sort_values(by="confirm" , ascending=False) #对data中的数据按列confirm进行降序排序
+    bar = (
+        Bar()
+            .add_xaxis(list(data_Nowtota.name))
+            .add_yaxis("中国各省今日新增疫情情况", list(data_Nowtota.confirm))
+            .set_global_opts(
+            title_opts=opts.TitleOpts(title="中国各省今日新增疫情情况"),
+            datazoom_opts=opts.DataZoomOpts(range_start=0, range_end=50),
+        )
+    )
+    page.add(bar)  # 将图像加入同一页
+    if flag: dwf.write_to_file(savaPath + '\\绘制中国各省今日新增情况柱状图.txt', str(bar.dump_options_with_quotes()))
+    return bar
+
+
+
+def china_line():
+    # 绘制中国各省今日新增情况折线图
+    data_tota = pd.DataFrame(pd.read_excel(readPath + '\中国总体历史疫情信息\历史总体信息.xlsx'))
+    lines = (
+        Line()  # 生成line类型图表
+            .add_xaxis(list(data_tota.date))  # 添加x轴
+            .add_yaxis('确诊人数', list(data_tota.confirm), label_opts=opts.LabelOpts(is_show=False))
+            .set_global_opts(title_opts=opts.TitleOpts(title='中国累计确诊人数线形图'))
+    )
+    page.add(lines)  # 将图像加入同一页
+    if flag: dwf.write_to_file(savaPath + '\\绘制中国各省今日新增情况折线图.txt', str(lines.dump_options_with_quotes()))
+    return lines
+
+
+def allRun():
+    china_map_confirm()
+    china_map_nowConfirm()
+    bar_now()
+    china_line()
+    return page.render(savaPath+'\\analyse2_all.html')#生成包含所有图像的网页并存放在analyse_all3.html
+
+if __name__ == '__main__':
+    dwf.createFile(readPath)  # 创建不存在的文件夹data
+    dwf.createFile(savaPath)  # 创建不存在的文件夹../data/data_Map_analyse1
+    allRun()

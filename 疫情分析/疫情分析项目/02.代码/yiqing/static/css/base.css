@@ -1,0 +1,58 @@
+body {
+    background-color: rgb(157, 174, 254);
+}
+
+.andemain div.ana {
+    width: 950px;
+    height: 480px;
+    margin: auto;
+}
+
+.tips {
+    display: none;
+    width: 99px;
+    height: 46px;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 63px;
+    text-align: center;
+    font-size: 10px;
+    color: white;
+}
+
+.tips span {
+    font-size: 26px;
+}
+
+.tips.tip1 {
+    left: 410px;
+}
+
+.tips.tip2 {
+    left: 580px;
+}
+
+.tips.tip3 {
+    left: 750px;
+}
+
+.tips.tip4 {
+    left: 920px;
+}
+
+.tips.tip1 span {
+    color: red;
+}
+
+.tips.tip2 span {
+    color: yellow;
+}
+
+.tips.tip3 span {
+    color: #191212;
+}
+
+.tips.tip4 span {
+    color: green;
+}
+

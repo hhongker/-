@@ -1,0 +1,250 @@
+{
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "color": [
+        "#c23531",
+        "#2f4554",
+        "#61a0a8",
+        "#d48265",
+        "#749f83",
+        "#ca8622",
+        "#bda29a",
+        "#6e7074",
+        "#546570",
+        "#c4ccd3",
+        "#f05b72",
+        "#ef5b9c",
+        "#f47920",
+        "#905a3d",
+        "#fab27b",
+        "#2a5caa",
+        "#444693",
+        "#726930",
+        "#b2d235",
+        "#6d8346",
+        "#ac6767",
+        "#1d953f",
+        "#6950a1",
+        "#918597"
+    ],
+    "series": [
+        {
+            "type": "bar",
+            "name": "\u786e\u8bca",
+            "data": [
+                1816820,
+                286308,
+                104145,
+                97689,
+                63929,
+                44606,
+                44526,
+                40751,
+                15526,
+                14476
+            ],
+            "barCategoryGap": "20%",
+            "label": {
+                "show": false,
+                "position": "top",
+                "margin": 8
+            }
+        },
+        {
+            "type": "bar",
+            "name": "\u6b7b\u4ea1",
+            "data": [
+                105557,
+                27125,
+                13759,
+                10779,
+                560,
+                2898,
+                2386,
+                2612,
+                312,
+                410
+            ],
+            "barCategoryGap": "20%",
+            "label": {
+                "show": false,
+                "position": "top",
+                "margin": 8
+            }
+        },
+        {
+            "type": "bar",
+            "name": "\u6cbb\u6108",
+            "data": [
+                535238,
+                196958,
+                375,
+                13030,
+                9211,
+                14656,
+                15479,
+                7238,
+                1823,
+                8986
+            ],
+            "barCategoryGap": "20%",
+            "label": {
+                "show": false,
+                "position": "top",
+                "margin": 8
+            }
+        },
+        {
+            "type": "bar",
+            "name": "\u73b0\u5b58\u786e\u8bca",
+            "data": [
+                1176025,
+                62225,
+                90011,
+                73880,
+                54158,
+                27052,
+                26661,
+                30901,
+                13391,
+                5080
+            ],
+            "barCategoryGap": "20%",
+            "label": {
+                "show": false,
+                "position": "top",
+                "margin": 8
+            }
+        },
+        {
+            "type": "bar",
+            "name": "\u65b0\u589e",
+            "data": [
+                23290,
+                664,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "barCategoryGap": "20%",
+            "label": {
+                "show": false,
+                "position": "top",
+                "margin": 8
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "\u786e\u8bca",
+                "\u6b7b\u4ea1",
+                "\u6cbb\u6108",
+                "\u73b0\u5b58\u786e\u8bca",
+                "\u65b0\u589e"
+            ],
+            "selected": {
+                "\u786e\u8bca": true,
+                "\u6b7b\u4ea1": true,
+                "\u6cbb\u6108": true,
+                "\u73b0\u5b58\u786e\u8bca": true,
+                "\u65b0\u589e": true
+            },
+            "show": true,
+            "padding": 5,
+            "itemGap": 10,
+            "itemWidth": 25,
+            "itemHeight": 14
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "cross"
+        },
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0
+    },
+    "xAxis": [
+        {
+            "show": true,
+            "scale": false,
+            "nameLocation": "end",
+            "nameGap": 15,
+            "gridIndex": 0,
+            "inverse": false,
+            "offset": 0,
+            "splitNumber": 5,
+            "minInterval": 0,
+            "splitLine": {
+                "show": false,
+                "lineStyle": {
+                    "show": true,
+                    "width": 1,
+                    "opacity": 1,
+                    "curveness": 0,
+                    "type": "solid"
+                }
+            },
+            "data": [
+                "\u7f8e\u56fd",
+                "\u897f\u73ed\u7259",
+                "\u82f1\u56fd",
+                "\u610f\u5927\u5229",
+                "\u5fb7\u56fd",
+                "\u4f0a\u6717",
+                "\u52a0\u62ff\u5927",
+                "\u6cd5\u56fd",
+                "\u745e\u58eb",
+                "\u5965\u5730\u5229"
+            ]
+        }
+    ],
+    "yAxis": [
+        {
+            "show": true,
+            "scale": false,
+            "nameLocation": "end",
+            "nameGap": 15,
+            "gridIndex": 0,
+            "inverse": false,
+            "offset": 0,
+            "splitNumber": 5,
+            "minInterval": 0,
+            "splitLine": {
+                "show": false,
+                "lineStyle": {
+                    "show": true,
+                    "width": 1,
+                    "opacity": 1,
+                    "curveness": 0,
+                    "type": "solid"
+                }
+            }
+        }
+    ],
+    "title": [
+        {
+            "text": "\u56fd\u5916\u75ab\u60c5\u4e25\u91cd\u7a0b\u5ea6\u6392\u540d\u524d\u5341\u56fd\u5bb6",
+            "left": "50%",
+            "top": "10%",
+            "padding": 5,
+            "itemGap": 10
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+# import datetime,time
+#
+# while True:
+#     now = datetime.datetime.now()
+#     # if now.hour == 1 and now.minute == 0:
+#     #     print("指定每天凌晨1点启动")
+#     print(now)
+#     # 每隔3秒执行一次
+#     time.sleep(3)
+
+import time
+from apscheduler.schedulers.blocking import BlockingScheduler
+
+
+def my_job():
+    print (time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
+
+
+def run():
+    sched = BlockingScheduler()
+    sched.add_job(my_job, 'interval', seconds=5)
+    sched.start()
+
+
+if __name__ == "__main__":
+    run()

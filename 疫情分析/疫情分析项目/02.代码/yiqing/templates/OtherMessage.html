@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{#侧边导航栏#}
+{% block leftNav %}
+    <ul class="layui-nav layui-nav-tree" lay-filter="test">
+        <li class="layui-nav-item layui-nav-itemed" id="A1">
+            <a href="#">各大洲总信息<span class="layui-nav-more"></span></a>
+            <dl class="layui-nav-child">
+                <dd><a href="#analyse2">各大洲总信息</a></dd>
+                <dd><a href="#analyse3">各大洲治愈信息</a></dd>
+                <dd><a href="#analyse4">各大洲现存确诊信息</a></dd>
+                <dd><a href="#analyse5">各大洲确诊信息</a></dd>
+            </dl>
+        </li>
+        <span class="layui-nav-bar" style="top: 22.5px; height: 0px; opacity: 0;"></span>
+    </ul>
+    <ul class="layui-nav layui-nav-tree" lay-filter="test">
+        <li class="layui-nav-item layui-nav-itemed" id="A2">
+            <a href="#">疫情严重程度前十国家<span class="layui-nav-more"></span></a>
+            <dl class="layui-nav-child">
+                <dd><a href="#analyse6">折线图</a></dd>
+                <dd><a href="#analyse7">柱状图</a></dd>
+            </dl>
+        </li>
+        <span class="layui-nav-bar" style="top: 22.5px; height: 0px; opacity: 0;"></span>
+    </ul>
+{% endblock %}
+
+{#存放主题内容#}
+{% block MainMess %}
+    <div class="andemain">
+        <div id="analyse2" class="ana"></div><br><hr><br>
+        <div id="analyse3" class="ana"></div><br><hr><br>
+        <div id="analyse4" class="ana"></div><br><hr><br>
+        <div id="analyse5" class="ana"></div><br><hr><br>
+    </div>
+     <div class="andemain" style="display: none">
+        <div id="analyse6" class="ana"></div><br><hr><br>
+        <div id="analyse7" class="ana"></div><br><hr><br>
+    </div>
+
+{% endblock %}
+{#ajax异步请求的主题内容#}
+{% block AjaxMainMess %}
+    <script>
+        fajax(document.getElementById('analyse2'), "analyse4_3")
+        fajax(document.getElementById('analyse3'), "analyse4_4")
+        fajax(document.getElementById('analyse4'), "analyse4_5")
+        fajax(document.getElementById('analyse5'), "analyse4_6")
+
+        fajax(document.getElementById('analyse6'), "analyse4_7")
+        fajax(document.getElementById('analyse7'), "analyse4_8")
+
+        $("#A1").on("click", function () {
+            $('.andemain').css({display: "none"}).eq(0).css({display: "block"})
+        })
+
+        $("#A2").on("click", function () {
+            $('.andemain').css({display: "none"}).eq(1).css({display: "block"})
+        })
+
+    $('.layui-header .layui-nav-item').removeClass('layui-this').eq(4).addClass('layui-this')
+    </script>
+{% endblock %}

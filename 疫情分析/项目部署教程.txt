@@ -1,0 +1,46 @@
+#python3的安装
+which python
+mkdir /usr/local/python3
+cd /usr/local/python3
+
+#安装依赖
+yum -y groupinstall "Development tools"
+yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel
+yum install libffi-devel -y
+
+#安装python3（3.7.6）
+wget https://www.python.org/ftp/python/3.7.6/Python-3.7.6.tar.xz
+
+开始安装python3
+tar -xvJf  Python-3.7.6.tar.xz
+cd Python-3.7.6
+./configure --prefix=/usr/local/python3
+make && make install
+
+#创建软链接
+ln -s /usr/local/python3/bin/python3 /usr/bin/python3
+ln -s /usr/local/python3/bin/pip3 /usr/bin/pip3
+
+
+#安装c++支持，3.7版本需要一个新的包libffi-devel
+#yum install libffi-devel -y
+#重新编译
+#make && make install
+
+#设置成默认的python
+#mv /usr/bin/python /usr/bin/python_bak
+#ln -s /usr/local/python3/bin/python3 /usr/bin/python
+#ln -s /usr/local/python3/bin/pip3 /usr/bin/pip
+
+安装uwsgi
+pip3 install uwsgi
+使用uwsgi
+ln -s /usr/local/python3/bin/uwsgi /usr/bin/uwsgi
+后台启用uwsgi
+uwsgi -d --ini /root/yiqing3/uwsgi.ini
+
+run.py改成这样
+from myapp import app
+#app.run(debug=True)
+
+app.run(host='0.0.0.0',port= 90, debug=True)

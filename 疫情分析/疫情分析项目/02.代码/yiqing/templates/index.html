@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{#侧边导航栏#}
+{% block leftNav %}
+    <ul class="layui-nav layui-nav-tree" lay-filter="test">
+        <li class="layui-nav-item layui-nav-itemed" id="Chinaeveryday">
+            <a href="#" id="all-show">各信息表格<span class="layui-nav-more"></span></a>
+            <dl class="layui-nav-child">
+                <dd><a href="#">中国各省市(区)总体疫情信息</a></dd>
+                <dd><a href="#">广东</a></dd>
+                <dd><a href="#">世界总体疫情信息</a></dd>
+                <dd><a href="#">美国</a></dd>
+            </dl>
+        </li>
+        <span class="layui-nav-bar" style="top: 22.5px; height: 0px; opacity: 0;"></span>
+    </ul>
+{% endblock %}
+
+{#存放主题内容#}
+{% block MainMess %}
+
+    <link rel="stylesheet" type="text/css" href="../static/css/easyui.css">
+
+    <table id="dg1"></table>
+    <table id="dg2"></table>
+    <table id="dg3"></table>
+    <table id="dg4"></table>
+
+{% endblock %}
+{#ajax异步请求的主题内容#}
+{% block AjaxMainMess %}
+    <script src="../static/js/index.js"></script>
+{% endblock %}
+

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{#侧边导航栏#}
+{% block leftNav %}
+    <ul class="layui-nav layui-nav-tree" lay-filter="test">
+        <li class="layui-nav-item layui-nav-itemed" id="Chinaeveryday">
+            <a href="#">中国省市疫情分析<span class="layui-nav-more"></span></a>
+            <dl class="layui-nav-child">
+                <dd><a href="#analyse2">中国各省市(区)总体疫情信息</a></dd>
+                <dd><a href="#analyse3">中国各省市(区)治疗率、死亡率</a></dd>
+                <dd><a href="#analyse4">中国各省市(区)今日新增疫情信息</a></dd>
+                <dd><a href="#analyse5">中国各省市(区)总体疫情信息</a></dd>
+            </dl>
+        </li>
+        <span class="layui-nav-bar" style="top: 22.5px; height: 0px; opacity: 0;"></span>
+    </ul>
+{% endblock %}
+
+{#存放主题内容#}
+{% block MainMess %}
+    <div class="andemain">
+        <div id="analyse2" class="ana"></div><br><hr><br>
+        <div id="analyse3" class="ana"></div><br><hr><br>
+        <div id="analyse4" class="ana"></div><br><hr><br>
+        <div id="analyse5" class="ana"></div><br><hr><br>
+    </div>
+
+{% endblock %}
+{#ajax异步请求的主题内容#}
+{% block AjaxMainMess %}
+    {#    {% include 'aaa.html' %}#}
+    <script>
+        fajax(document.getElementById('analyse2'), "analyse2_2")
+        fajax(document.getElementById('analyse3'), "analyse2_3")
+        fajax(document.getElementById('analyse4'), "analyse2_4")
+        fajax(document.getElementById('analyse5'), "analyse2_5")
+    $('.layui-header .layui-nav-item').removeClass('layui-this').eq(2).addClass('layui-this')
+    </script>
+{% endblock %}
